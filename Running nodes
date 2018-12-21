@@ -1,0 +1,11 @@
+#docker bootup script
+sudo amazon-linux-extras install docker -y
+sudo service docker start
+yum install java -y
+
+cd /opt/
+wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37-windows-x64.zip
+unzip apache-tomcat-8.5.37-windows-x64.zip
+mv apache-tomcat-8.5.37 tomcat
+cd /opt/tomcat/bin
+./startup.sh
