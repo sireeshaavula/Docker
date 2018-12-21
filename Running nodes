@@ -21,3 +21,43 @@ RUN pwd
 COPY shoppingcart.war /usr/local/tomcat/webapps/
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
+
+#Docker commands
+
+FROM tomcat:1
+RUN wget http://nexusurl/repo/hello-1.war
+ADD hello-1.war /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD[startup.sh]
+
+openjdk:7-jre
+
+FROM buildpack-deps:jessie-curl
+
+FROM debian:jessie
+
+FROM scratch
+
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+
+docker build -t webserver1:v1 .
+  140  docker images
+  141  docker run -d -it -p 8000:80 webserver1:v1
+  142  docker ps
+  143  curl httpd://34.220.234.113:8000
+  144  curl http://34.220.234.113:8000
+  145  docker rm
+  146  docker rm images
+  147  docker rm --help
+  148  docker ps
+  149  docker container stop
+  150  docker cotainer ls -aq
+  151  docker container stop $(docker container ls -aq)
+  152  docker ps
+  153  docker container rm $(docker container ls -aq)
+  154  docker images ls
+  155  docker images
+  156  docker image prune -a
+  157  docker images
+
