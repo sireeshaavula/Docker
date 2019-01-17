@@ -87,8 +87,19 @@ sudo chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 #And now if you do: docker-compose --version
 
-#You'll see that docker-compose is now on the PATH
+#push the docker images to docker hub
 
+#!/bin/bash
+cd /var/lib/jenkins/workspace/sample_maven_test/nec
+#cp . /var/lib/jenkins/workspace/sample_maven_test/
+docker login -u="avulasireesha" -p="Login@123"
+docker run -d nec/nec-transactions-service:tx
+docker run -d nec/nec-store-service:store
+docker ps
+docker tag nec/nec-transactions-service:tx avulasireesha/test-demo:tx
+docker tag nec/nec-store-service:store avulasireesha/test-demo:store
+docker push avulasireesha/test-demo:tx
+docker push avulasireesha/test-demo:store
 
   
   
