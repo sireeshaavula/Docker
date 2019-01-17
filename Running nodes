@@ -68,6 +68,27 @@ docker build -t webserver1:v1 .
 
 #Due to proxy issue we are getiing this error. we can resolve this by using the below cmds.
 
+#to push the images to docker registry using docker compose.
+
+https://groups.google.com/forum/#!topic/docker-user/G41mHy42U2k
+
+https://www.youtube.com/watch?v=QkHEGVBZ88A
+
+#To install docker compose in amazon ami
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+#fter you do the curl command , it'll put docker-compose into the
+
+/usr/local/bin
+#which is not on the PATH To fix it, create a symbolic link:
+
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+#And now if you do: docker-compose --version
+
+#You'll see that docker-compose is now on the PATH
+
 
   
   
