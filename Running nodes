@@ -101,6 +101,24 @@ docker tag nec/nec-store-service:store avulasireesha/test-demo:store
 docker push avulasireesha/test-demo:tx
 docker push avulasireesha/test-demo:store
 
+###################################################################
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:GKk156SgwZbCjdgV27qCuTH3Vh6DrxIL67Jt3WqR6B8.
+Please contact your system administrator.
+Add correct host key in /c/Users/avula.sireesha1/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /c/Users/avula.sireesha1/.ssh/known_hosts:7
+ECDSA host key for 18.182.120.233 has changed and you have requested strict checking.
+Host key verification failed.
+
+Sol: ssh-keygen -R hostip
+
   
   
 
