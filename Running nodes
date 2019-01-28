@@ -119,6 +119,20 @@ Host key verification failed.
 
 Sol: ssh-keygen -R hostip
 
+
+
+#Data base setup
+
+
+Dockerfile:
+
+ENV env_var_name=$SPRING_PROFILES_ACTIVE
+
+Run.sh:
+
+java -jar -Dspring.profiles.active=$env_var_name application.jar
+
+
   
   
 
