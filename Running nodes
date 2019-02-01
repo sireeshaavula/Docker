@@ -139,6 +139,24 @@ docker login
 # Can't su to user jenkins after installing Jenkins
 sudo su -s /bin/bash jenkins
 
+# passing the database details run time in the container
+
+docker run -d -it -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=dev"  avulasireesha/test-demo:latest
+
+docker run -d -it -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=test"  avulasireesha/test-demo:latest
+
+#Docker error cannot delete docker container, conflict: unable to remove repository reference
+
+First, remove the container names
+
+EX:
+$ sudo docker rm backstabbing_ritchie
+
+
+
+ 
+ 
+
 
 
 
