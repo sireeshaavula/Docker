@@ -136,6 +136,12 @@ java -jar -Dspring.profiles.active=$env_var_name application.jar
 docker logout
 docker login
 
+# Can't su to user jenkins after installing Jenkins
+sudo su -s /bin/bash jenkins
+
+
+
+
 
 
   
