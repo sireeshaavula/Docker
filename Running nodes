@@ -152,6 +152,10 @@ First, remove the container names
 EX:
 $ sudo docker rm backstabbing_ritchie
 
+# to login to another server
+
+ssh -t -t jenkins@3.93.77.118
+
 
 
  
