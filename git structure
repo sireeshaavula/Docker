@@ -1,0 +1,10 @@
+
+-->Under one repository we can create multiple projects.
+-->project wise we can crete branches.
+-->each project will have Dev branch and each developper can create a multiple sub branches.
+-->dev branch will have total code and developers can create their code in diff sub branches.
+--> whenever developper try to commit the code they need to raise a pull request to merge the code to Dev branch.
+-->pull request and has been approved by dev lead.once they got the approval developer can merge the code.
+-->once developer commit the code in the dev branch automatically jenkins job will trigger the build.
+
+-->once build is ready 
