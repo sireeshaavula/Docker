@@ -8,3 +8,7 @@
 -->once developer commit the code in the dev branch automatically jenkins job will trigger the build.
 
 -->once build is ready 
+
+Integrate Jenkins builds into GitHub Pull Requests
+
+https://medium.com/@mreigen/integrate-jenkins-builds-into-github-pull-requests-33bc053d6210
