@@ -156,6 +156,17 @@ $ sudo docker rm backstabbing_ritchie
 
 ssh -t -t jenkins@3.93.77.118
 
+fatal: unable to access 'https://github.com/NEC-mobile-pos/server.git/': Unknown SSL protocol error in connection to github.com:443
+
+The git proxy needs to be set to resolve this . Execute below git command from git bash. 
+
+git config --global http.proxy http://proxy4.wipro.com:8080
+
+
+
+
+
+
 
 
  
