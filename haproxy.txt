@@ -1,0 +1,69 @@
+global
+        daemon
+        maxconn 256
+
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+
+    frontend http-in
+        bind *:9010
+	acl idm path_beg /idm
+	acl administration path_beg /administration
+	acl consume path_beg /consume
+	acl manage path_beg /manage
+	acl orchestration path_beg /orchestration
+	acl notification path_beg /notification
+	acl websocket path_beg /websocket
+	acl monitor path_beg /monitor   
+	acl cvpn path_beg /cvpn
+
+	use_backend bk_idm if idm
+	use_backend bk_administration if administration
+	use_backend bk_consume if consume
+	use_backend bk_manage if manage
+	use_backend bk_orchestration if orchestration
+	use_backend bk_notification if notification
+	use_backend bk_monitor if monitor
+	use_backend bk_websocket if websocket
+	use_backend bk_cvpn if cvpn
+
+
+        default_backend bk_ui
+
+    backend ws
+	balance roundrobin
+	option forwardfor
+	server websocket  localhost:8088	maxconn 54
+
+     backend bk_ui
+        server idm localhost:9003 maxconn 54
+
+    backend bk_administration
+        server idm localhost:7788 maxconn 54
+
+    backend bk_idm
+        server idm localhost:8090 maxconn 54
+
+    backend bk_consume
+        server consume localhost:3001 maxconn 54
+
+    backend bk_manage
+        server manage localhost:5555 maxconn 54
+
+    backend bk_orchestration
+        server orchestration localhost:8445 maxconn 54
+
+    backend bk_monitor
+        server monitor localhost:8779 maxconn 54
+
+    backend bk_notification
+        server notification localhost:1515 maxconn 54
+
+   backend bk_websocket
+        server websocket localhost:8088 maxconn 54
+
+   backend bk_cvpn
+        server cvpn localhost:5666 maxconn 54
