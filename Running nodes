@@ -163,6 +163,14 @@ The git proxy needs to be set to resolve this . Execute below git command from g
 git config --global http.proxy http://proxy4.wipro.com:8080
 
 
+if i have 4 services in the github and at a time i need respective services to be deplyed using jenkins---------->
+
+
+need to enable POlling ignores commits in certain paths in job configuration.
+
+
+
+
 
 
 
