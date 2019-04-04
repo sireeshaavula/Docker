@@ -169,6 +169,21 @@ if i have 4 services in the github and at a time i need respective services to b
 need to enable POlling ignores commits in certain paths in job configuration.
 
 
+Appcenter login using jenkins
+
+cd /var/lib/jenkins/workspace/Appium/NECmPosAutoAppCentersss/
+
+appcenter login --token a87c13ea2c26b785358f2f86d9fb69ccd1d06647
+
+cd /root/automation/automations/NECmPosAutoAppCentersss/
+
+#appcenter build download -t build -i "1.0.4.13" -a "mPOS_Dev2nd/NEC_mPOS_Dev_iOS" --token "a87c13ea2c26b785358f2f86d9fb69ccd1d06647"
+
+#appcenter test run appium --token --app "mPOS_Dev2nd/NEC_mPOS_Dev_iOS" --devices c5f28df4 --app-path build_mPOS_Client_Source_Develop_18_1.ipa --test-series "devopstest" --locale "en_US" --build-dir target/upload
+
+appcenter test run appium --token --app "mPOS_Dev2nd/NEC_mPOS_Dev_iOS" --devices 1b5df85e  --app-path NEC.MPos0.0.24.iOS.ipa --test-series "devopstest" --locale "en_US" --build-dir target/upload
+
+
 
 
 
